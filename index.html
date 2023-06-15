@@ -1,23 +1,21 @@
-<h1 style="color:pink">Second</h1>
+<script>
+function allowDrop(ev) {
+  ev.preventDefault();
+}
 
-<img src="images/water city.jpg" title="it's koi">
+function drag(ev) {
+  ev.dataTransfer.setData("text", ev.target.id);
+}
 
-<p title="i'm a tooltip">paragraph<p>
-    
-<p>
-This paragraph
-contains a lot of lines
-in the source code,
-but the browser
-ignores it.
-</p>
+function drop(ev) {
+  ev.preventDefault();
+  var data = ev.dataTransfer.getData("text");
+  ev.target.appendChild(document.getElementById(data));
+}
+</script>
+</head>
+<body>
 
-<pre>
-  My Bonnie lies over the ocean.
+<div id="div1" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
 
-  My Bonnie lies over the sea.
-
-  My Bonnie lies over the ocean.
-
-  Oh, bring back my Bonnie to me.
-</pre>
+<img id="drag1" src="images/koi" draggable="true" ondragstart="drag(event)" width="336" height="69">
